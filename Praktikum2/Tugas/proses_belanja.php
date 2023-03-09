@@ -1,6 +1,6 @@
 <?php
 //mengambil data input
-$nama = $_POST['nama'];
+$nama= $_POST['nama'];
 $produk = $_POST['produk'];
 $jumlah = $_POST['jumlah'];
 $total_harga = ($produk + $jumlah);
