@@ -92,9 +92,11 @@
             <th>domisili</th>
             <th>program studi</th>
             <th>skills</th>
-            <th>sks</th>
+            <th></th>
+            <th>skor</th>
+            <th>predikat</th>
         </tr>
-        <?php
+       <?php
         if(isset($_POST['submit'])){
            $nim = $_POST['nim'];
            $nama = $_POST['nama'];
@@ -103,7 +105,23 @@
            $domisili = $_POST['domisili'];
            $program_studi = $_POST['program_studi'];
            $skills_user = $_POST['skill'];
-        ?>
+           $_nilai = 0;
+               foreach($skills_user as $sey) {$_nilai += $skills[$sey];};
+           $predikat = "";
+               if($_nilai == 0){
+                   $predikat ="Buruk";
+               }elseif($_nilai >0 && $_nilai <=40){
+                   $predikat ="Kurang";
+               }elseif($_nilai > 40 && $_nilai <= 60){
+                   $predikat ="Cukup";
+               }elseif($_nilai > 60 && $_nilai <= 100){
+                   $predikat ="Bagus";
+               }elseif($_nilai > 100 && $_nilai <= 150){
+                   $predikat ="Sangat Bagus";
+               }else{
+                   $predikat = "Tidak Memadai";
+               };
+    ?>    
         <tr>
             <td><?= $nim; ?></td>
             <td><?= $nama; ?></td>
@@ -112,10 +130,11 @@
             <td><?= $domisili; ?></td>
             <td><?= $program_studi; ?></td>
             <td><?php foreach($skills_user as $skills){echo $skills . " ";} ?><td>
-           
-        </tr>
+           <td><?=$_nilai;?></td>
+           <td><?=$predikat;?></td>
+          </tr>
         <?php } ?>
-    </table>
+      </table>
     </div>
 </body>
 </html>
